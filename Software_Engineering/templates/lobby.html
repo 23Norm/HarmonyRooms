@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/lobby.css') }}">
+    <script defer src="{{ url_for('static', filename='javascript/lobby.js') }}"></script>
+    <title>Document</title>
+</head>
+<body>
+    <form class="user">
+        User profile
+        <div id="userPFP">
+            <img src="" alt="" id="user_image">
+            <label id="user_name">name</label>
+        </div>
+        <button id="settingsBTN">SETTINGS</button>
+        <button id="addBTN">+</button>
+        <input type="code" id="code" placeholder="Enter code">
+        <button id="EnterBTN">ENTER ROOM</button>
+    </form>
+
+    <div class="room_list" id="room_list">
+        <div id="room">New Room</div>
+    </div>
+
+    <form class="mediaPlayer">
+        <div id="player">
+            <div id="indicator">
+                Connected: <label id="connected">0</label>
+            </div>
+        </div>
+        
+        <div id="voting">
+            VOTE
+            <div>
+                <button>YES</button>
+                <button>NO</button>
+            </div>
+        </div>
+    </form>
+
+    <div id="settings">
+        <button id="closeBTN">x</button>
+        <button id="changeName">Change name</button>
+        <a id="logout-link"  href="{{url_for('logout')}}">Logout</a>
+    </div>
+
+</body>
+</html>

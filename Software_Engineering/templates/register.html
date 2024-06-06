@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="{{ url_for('static', filename='css/login-register.css') }}">
+    <title>Register</title>
+</head>
+<body>
+    <h1>HarmoonyRooms </h1>
+    <p>Register</p>
+    <form method="POST" action="" id="registerForm">
+        <div>{{  form.hidden_tag() }}</div>
+        
+        <h>Username</h>
+        <div>{{  form.username }}</div>
+        
+        <h>Password</h>
+        <div>{{  form.password }}</div>
+        
+        <div>{{  form.submit }}</div>
+    </form>
+
+    <a href="{{url_for('login')}}">Already have an account?</a>
+</body>
+</html>
