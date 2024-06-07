@@ -27,7 +27,11 @@
     <form class="mediaPlayer">
         <div id="player">
             <div id="indicator">
-                Connected: <label id="connected">0</label>
+                Connected: <label id="connected">1</label>
+                
+                <audio controls id="music">
+                    <source src="{{ url_for('static', filename='media/RunawayBaby.mp3') }}" type="audio/mpeg">
+                </audio>
             </div>
         </div>
         
