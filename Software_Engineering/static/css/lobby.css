@@ -132,7 +132,7 @@ form {
     overflow-y: scroll;
 }
 
-#room{
+.roomClass{
     display: flex;
     align-items: center;
     border: 1px solid black;
@@ -156,6 +156,11 @@ form {
     align-items: center;
 }
 
+#music{
+    width: 100%;
+    height: 100%;
+}
+
 #player {
     background-image: url('image/brunoMars.png');
     background-size: cover;
@@ -177,7 +182,8 @@ form {
 }
 
 #indicator{
-    background-color: #000000;
+    color: white;
+    background-color: #616161;
     width: fit-content;
     height: fit-content;
 }

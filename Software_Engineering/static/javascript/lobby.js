@@ -1,46 +1,51 @@
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('addBTN').addEventListener('click', function(event) {
-        const roomName = 'New Room';  // You can customize this as needed
-        
-        // Create a new div element
-        const newDiv = document.createElement('div');
-        
-        // Optionally, add some content or styling to the new div
-        newDiv.textContent = roomName;
-        newDiv.style.display = 'flex';
-        newDiv.style.alignItems = 'center';
-        newDiv.style.border = '1px solid black';
-        newDiv.style.margin = '15px';
-        newDiv.style.height = '8%';
-        newDiv.style.backgroundColor = '#444';
-        newDiv.style.color = '#fff';
-        newDiv.style.cursor = 
-        
-        // Append the new div to the right panel
-        document.getElementById('room_list').appendChild(newDiv);
-        
-        // Send data to Flask route
-        fetch('/add_room', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ room_name: roomName })
-        })
+
+        function createRoomItem(data){
+
+            const newDiv = document.createElement('div');
+            newDiv.setAttribute('data-music', data.music_path);
+
+            newDiv.textContent = data.code;
+            newDiv.style.display = 'flex';
+            newDiv.style.alignItems = 'center';
+            newDiv.style.border = '1px solid black';
+            newDiv.style.margin = '15px';
+            newDiv.style.height = '8%';
+            newDiv.style.backgroundColor = '#444';
+            newDiv.style.color = '#fff';
+            newDiv.style.cursor = 
+           
+            document.getElementById('room_list').appendChild(newDiv);
+            
+            newDiv.addEventListener('click', () => {
+                const player = document.getElementById('music')
+                player.src = data.music_path
+                player.play()
+            })
+        }
+
+        fetch('/add_room')
         .then(response => response.json())
-        .then(data => console.log(data))  // Handle response as needed
+        .then(data => createRoomItem(data)) 
         .catch(error => console.error('Error:', error));
         
         event.preventDefault();
     });
 });
 
-document.getElementById('settingsBTN').addEventListener('click', function(){
+document.getElementById('settingsBTN').addEventListener('click', () => {
     document.getElementById('settings').classList.add('active')
-    event.preventDefault();
-})
+})  
 
 document.getElementById('closeBTN').addEventListener('click', function(){
     document.getElementById('settings').classList.remove('active')
 })
 
+document.querySelectorAll('.roomClass').forEach(room => {
+    room.addEventListener('click', () => {
+        const player = document.getElementById('music')
+        player.src = room.dataset.music
+        player.play()
+    })  
+})
