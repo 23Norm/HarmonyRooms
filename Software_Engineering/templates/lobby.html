@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="user">
+    <form class="user">
         User profile
         <div id="userPFP">
             <img src="" alt="" id="user_image">
@@ -18,24 +18,21 @@
         <button id="addBTN">+</button>
         <input type="code" id="code" placeholder="Enter code">
         <button id="EnterBTN">ENTER ROOM</button>
-    </div>
+    </form>
 
     <div class="room_list" id="room_list">
-        {% for data in room_codes %}
-        <div class="roomClass"  data-music="{{data.music_path}}">{{data.code}}</div>
-        {% endfor %}
+        <div id="room">New Room</div>
     </div>
 
-    <div class="mediaPlayer">
+    <form class="mediaPlayer">
         <div id="player">
             <div id="indicator">
                 Connected: <label id="connected">1</label>
             </div>
 
             <audio controls id="music">
-                <source type="audio/mpeg" id="musicID">
+                <source src="{{ url_for('static', filename='media/RunawayBaby.mp3') }}" type="audio/mpeg">
             </audio>
-            
         </div>
         
         <div id="voting">
@@ -45,7 +42,7 @@
                 <button>NO</button>
             </div>
         </div>
-    </div>
+    </form>
 
     <div id="settings">
         <button id="closeBTN">x</button>
