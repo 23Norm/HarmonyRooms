@@ -3,52 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"  href="{{ url_for('static', filename='css/lobby.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/lobby.css') }}">
     <script defer src="{{ url_for('static', filename='javascript/lobby.js') }}"></script>
-    <title>Document</title>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <title>Music Room Lobby</title>
 </head>
 <body>
-    <form class="user">
-        User profile
+    <div class="user">
         <div id="userPFP">
-            <img src="" alt="" id="user_image">
-            <label id="user_name">name</label>
+            <img src="{{ url_for('static', filename='css/image/default.png') }}" alt="" id="user_image">
+            <label id="user_name">USER</label>
         </div>
         <button id="settingsBTN">SETTINGS</button>
         <button id="addBTN">+</button>
-        <input type="code" id="code" placeholder="Enter code">
-        <button id="EnterBTN">ENTER ROOM</button>
-    </form>
-
-    <div class="room_list" id="room_list">
-        <div id="room">New Room</div>
+        <input type="text" id="code" placeholder="Enter code" name="code" value="{{code}}">
+        <button id="EnterBTN" type="submit" name="join">JOIN ROOM</button>
     </div>
 
-    <form class="mediaPlayer">
-        <div id="player">
-            <div id="indicator">
-                Connected: <label id="connected">1</label>
-            </div>
+    <div class="room_list" id="room_list">
+        ROOMS
+        {% for data in room_codes %}
+        <div class="roomClass" data-music="{{data.music_path}}" data-room-code="{{data.code}}">
+            {{data.code}}
+        </div>
+        {% endfor %}
+    </div>
 
+    <div class="mediaPlayer">
+        <div id="player">
+            <form action="" method="post">
+                <div id="room-name"></div>
+                {% if error %}
+                <ul>
+                    <li>{{error}}</li>
+                </ul>
+                {% endif %}
+            </form>
+            <div id="icon">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAP9JREFUSEvFlI0NgkAMhR+buIk6iTqJbqJOIk6im6gvXkmt5ejdSWxCCBz0a19/Osxs3cz+EQEcAawAnF/3Pl3huCKAh/F2T7BDhFICOAHYKqcEMaMrAJ65VgLgt4sk13IEJjIOsFKAjlJgmwSVM2azk4cWgIVRvn16Ofj9FUBg0hD/BYi20iVfUWXaczID9rboSD+EEEirklP/xGm9ZKJrBtxUtB6nGWBXgoV4gMl66Z8oD2XyjCthbQ5C9dIADgo3p2ecTL1vwvWyaduoCPsY/UQP1yunK/Wlc7aqtXC9Ip3hSRauVy0gXK9aALMK1asFQIjMwWi9WgGZzfI+egITED0Zdt8eqgAAAABJRU5ErkJggg==" alt="Music Icon"/>
+            </div>
             <audio controls id="music">
-                <source src="{{ url_for('static', filename='media/RunawayBaby.mp3') }}" type="audio/mpeg">
+                <source type="audio/mpeg" id="musicID">
             </audio>
-        </div>
-        
-        <div id="voting">
-            VOTE
-            <div>
-                <button>YES</button>
-                <button>NO</button>
+
+            <div id="voting" class="voting-section">
+                <span>VOTE TO SKIP SONG</span>
+                <div>
+                    <button id="voteYesBtn">YES</button>
+                    <button id="voteNoBtn">NO</button>
+                </div>
             </div>
         </div>
-    </form>
+    </div>
 
     <div id="settings">
         <button id="closeBTN">x</button>
-        <button id="changeName">Change name</button>
-        <a id="logout-link"  href="{{url_for('logout')}}">Logout</a>
+        <a id="logout-link" href="{{url_for('logout')}}">Logout</a>
     </div>
-
 </body>
 </html>

@@ -5,6 +5,7 @@ body {
     height: 100vh;
     width: 100vw;
     overflow: hidden;
+    background-color: #000000;
 }
 
 form {
@@ -21,8 +22,13 @@ form {
     flex-direction: column;
     width: 10%;
     align-items: center;
-    background-color: #f2f2f2;
-    margin: 3px;
+    /* background-image:  url('image/room-image3.jpg'); */
+    /* background-color: aquamarine;
+    background-repeat: no-repeat; */
+    background-color: grey;
+    background-size: cover;
+    margin: 5px;
+    border-radius: 15px;
 }
 
 #userPFP{
@@ -34,11 +40,11 @@ form {
 }
 
 #user_image{
-    background-image: url('image/default.png');
     background-size: cover;
     background-position: center;
     height: 8rem;
     width: 9rem;
+    border-radius: 15px;
 }
 
 #settingsBTN, #addBTN, #code{
@@ -125,65 +131,112 @@ form {
 
 .room_list {
     width: 20%;
-    background-color: #e6e6e6;
+    background-color: #64646485;
+    /* background-image:  url('image/room-image.jpg'); */
+    /* background-size: cover;
+    background-repeat: no-repeat; */
     display: flex;
     flex-direction: column;
-    margin: 3px;
-    overflow-y: scroll;
+    margin: 5px;
+    border-radius: 15px;
+    align-items: center;
+    color: white;
 }
 
-#room{
+.roomClass{
     display: flex;
     align-items: center;
+    justify-content: center;
     border: 1px solid black;
-    margin: 15px;
+    margin: 5px;
     height: 8%;
+    width: 95%;
     background-color: #444444;
     color: #f2f2f2;
     cursor: pointer;
+    border-radius: 15px;
 }
 
 /* -----------------------------MEDIA PLAYER------------------------ */
 
 .mediaPlayer {
     width: 70%;
-    background-color: #cccccc;
+    background-color: #000000;
     flex-direction: column;
-    margin: 3px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+#music{
+    width: 80%;
+    height: 100%;
 }
 
 #player {
-    background-image: url('image/brunoMars.png');
+    /* background-image: url('image/audio4.jpg');
     background-size: cover;
-    background-position: center;
-    height: 80%;
-    width: 100%;
-    background-color: rgb(255, 255, 255);
-}
-
-#voting{
-    margin-top: 25px;
+    background-position: center; */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
-    height: 20%;
-    width: 100%;
-    background-color: grey;
+    height: 80%;
+    width: 99%;
+    background-color: rgb(36, 36, 36);
+    border-radius: 15px;
 }
 
 #indicator{
-    background-color: #000000;
+    color: white;
+    background-color: #616161;
     width: fit-content;
     height: fit-content;
 }
 
-#music{
-    height: 100%;
-    width: 100%;
+#icon{
+    margin-top: 25%;
+    color: white;
 }
 
+#voting {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #444;
+    padding: 10px;
+    border-radius: 5px;
+    color: white;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+#voting span {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#voting div {
+    display: flex;
+    gap: 10px;
+}
+
+#voting button {
+    background-color: #555;
+    border: none;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+#voting button:hover {
+    background-color: #777;
+}
+
+#voting button:active {
+    background-color: #999;
+}
